@@ -50,15 +50,7 @@ class RentalApprovalItem extends StatelessWidget {
                 Text("9th Edition of Java Beginers by demi",
                     style: Theme.of(context).textTheme.bodyText1),
                 addVerticalSpace(10),
-                Text("Remarks",style: TextStyle(color: ORANGE_COLOR)),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Approved for rent",
-                    fillColor: Colors.white,
-                    filled: true,
-                  ),
 
-                )
 
               ],
             ),

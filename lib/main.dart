@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rentify_inspection/screens/inspection/Inspection_dashboard.dart';
 import 'package:rentify_inspection/utils/routes.dart';
 import 'package:rentify_inspection/utils/theme.dart';
 
-void main() {
+main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -23,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: "Rentify",
       theme: appTheme(),
       routes: getRoutes(),
-      home: InspectionDashboard(),
+      home:InspectionDashboard(),
     );
   }
 }

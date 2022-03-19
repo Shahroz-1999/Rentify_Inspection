@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rentify_inspection/utils/SizeConfig.dart';
 import 'package:rentify_inspection/utils/theme.dart';
 import 'package:rentify_inspection/widgets/casual_operations.dart';
 import 'package:rentify_inspection/widgets/widget_generator.dart';
@@ -14,9 +15,6 @@ class InspectionInsert extends StatefulWidget {
 class _InspectionInsertState extends State<InspectionInsert> {
   @override
   Widget build(BuildContext context) {
-    //Device Screen's width and height.
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: CREAM_COLOR,
@@ -24,10 +22,10 @@ class _InspectionInsertState extends State<InspectionInsert> {
       body: SingleChildScrollView(
           child:Column(
             children: <Widget>[
-              addVerticalSpace( height * 0.034 ),
-              _greetSection(height),
-              addVerticalSpace( height * 0.034 ),
-              _textFieldsSection(width,height)
+              addVerticalSpace( SizeConfig.screenHeight * 0.034 ),
+              _greetSection(SizeConfig.screenHeight),
+              addVerticalSpace( SizeConfig.screenHeight * 0.034 ),
+              _textFieldsSection(SizeConfig.screenWidth,SizeConfig.screenHeight)
 
             ],
 

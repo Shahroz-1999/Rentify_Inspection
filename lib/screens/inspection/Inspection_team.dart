@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rentify_inspection/utils/SizeConfig.dart';
 import 'package:rentify_inspection/utils/theme.dart';
 import 'package:rentify_inspection/widgets/casual_operations.dart';
 
@@ -15,17 +16,15 @@ class _InspectionTeamState extends State<InspectionTeam> {
   int _currentIndex = 1;
   @override
   Widget build(BuildContext context) {
-    //Device Screen's width and height.
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       backgroundColor: CREAM_COLOR,
       body: SafeArea(
         child: SingleChildScrollView(
             child: Container(
-              height: height,
-              width: width,
+              height: SizeConfig.screenHeight,
+              width: SizeConfig.screenWidth,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
@@ -34,15 +33,15 @@ class _InspectionTeamState extends State<InspectionTeam> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  addVerticalSpace(height * 0.02),
+                  addVerticalSpace(SizeConfig.screenHeight * 0.02),
 
-                  _TopSection(height: height, width: width),
+                  _TopSection(height: SizeConfig.screenHeight, width: SizeConfig.screenWidth),
 
-                  addVerticalSpace(height * 0.02),
+                  addVerticalSpace(SizeConfig.screenHeight * 0.02),
 
-                  _midSection(context, height,width),
+                  _midSection(context, SizeConfig.screenHeight, SizeConfig.screenWidth),
 
-                  addVerticalSpace(height * 0.02),
+                  addVerticalSpace(SizeConfig.screenHeight * 0.02),
 
                   Padding(
                     padding: const EdgeInsets.all(20),

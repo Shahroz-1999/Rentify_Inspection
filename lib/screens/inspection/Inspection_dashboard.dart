@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentify_inspection/utils/SizeConfig.dart';
 import 'package:rentify_inspection/utils/theme.dart';
 import 'package:rentify_inspection/widgets/casual_operations.dart';
 
@@ -15,8 +16,7 @@ class _InspectionDashboardState extends State<InspectionDashboard> {
   @override
   Widget build(BuildContext context) {
     //Device Screen's width and height.
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    SizeConfig.init(context);
 
     return Scaffold(
       backgroundColor: CREAM_COLOR,
@@ -25,7 +25,7 @@ class _InspectionDashboardState extends State<InspectionDashboard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _topSection(height, context),
+            _topSection(SizeConfig.screenHeight, context),
           ],
         ),
       ),
@@ -67,7 +67,7 @@ class _InspectionDashboardState extends State<InspectionDashboard> {
                           size: 80,
                         ),
                         Text(
-                          "Rental Request",
+                          "Product Approval",
                           style: Theme.of(context).textTheme.subtitle1,
                         )
                       ],
@@ -89,14 +89,14 @@ class _InspectionDashboardState extends State<InspectionDashboard> {
                           size: 80,
                         ),
                         Text(
-                          "Borrower Request",
+                          "User Approval",
                           style: Theme.of(context).textTheme.subtitle1,
                         )
                       ],
                     ),
                   ),
                   onTap: (){
-                    Navigator.pushNamed(context, "/BorrowReq");
+                    Navigator.pushNamed(context, "/UserApproval");
                   },
                 ),
                 InkWell(
