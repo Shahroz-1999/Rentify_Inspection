@@ -18,6 +18,7 @@ class UserApproval extends StatefulWidget {
 class _UserApprovalState extends State<UserApproval> {
   Firebase_firestore firebase_firestore = new Firebase_firestore();
   UserData _userData = new UserData();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +36,10 @@ class _UserApprovalState extends State<UserApproval> {
                 );
               }
 
+              for(int i =0 ; i < (snapshot.data!).docs.length; i++){
+
+              }
+
               return ListView(
                 children: (snapshot.data!).docs.map((document)  {
                   _userData.id = document.id;
@@ -44,50 +49,10 @@ class _UserApprovalState extends State<UserApproval> {
                   _userData.nicBackUrl = document["NicBackUrl"];
                   _userData.nicFrontUrl = document["NicFrontUrl"];
                   _userData.nic = document["NIC"];
-                  return InkWell(
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                addHorizontalSpace(20),
-                                Container(
-                                  height: 45,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(image:AssetImage("assets/images/face.jpeg"), fit: BoxFit.fill),
-                                  ),
-                                ),
-                                addHorizontalSpace(10),
-                                Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(_userData.firstName+" "+_userData.lastName,style: Theme.of(context).textTheme.headline3,),
-                                      Text("Nic: "+_userData.nic.toString(),style:Theme.of(context).textTheme.subtitle2),
-                                      Text("Pone: "+_userData.phoneNumber.toString(),style:Theme.of(context).textTheme.subtitle2),
-
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ),
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  UserDetail(userData:_userData )),
-                      );
-                    },
-                  );
-                }).toList(),
+                  PendingUser pendingUser = new PendingUser(userData: _userData);
+                  _userData = UserData();
+                  return pendingUser;
+                }).toList(growable: true)
               );
             }),
         );
@@ -95,8 +60,8 @@ class _UserApprovalState extends State<UserApproval> {
 }
 
 class PendingUser extends StatelessWidget {
-  const PendingUser({Key? key,}) : super(key: key);
-
+  const PendingUser({Key? key, required this.userData, }) : super(key: key);
+  final UserData userData;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -120,8 +85,10 @@ class PendingUser extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: <Widget>[
-                        //Text(_userDetail.firstName+" "+_userDetail.lastName,style: Theme.of(context).textTheme.headline3,),
-                        //Text("Nic: "+_userDetail.nic.toString(),style:Theme.of(context).textTheme.subtitle2),
+                        Text(userData.firstName+" "+userData.lastName,style: Theme.of(context).textTheme.headline3,),
+                        Text("Nic: "+userData.nic.toString(),style:Theme.of(context).textTheme.subtitle2),
+                        Text("Pone: "+userData.phoneNumber.toString(),style:Theme.of(context).textTheme.subtitle2),
+
                       ],
                     ),
                   ),
@@ -133,7 +100,9 @@ class PendingUser extends StatelessWidget {
         ),
       ),
       onTap: (){
-
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>  UserDetail(userData:userData )));
       },
     );
   }

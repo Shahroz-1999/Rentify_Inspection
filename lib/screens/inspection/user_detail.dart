@@ -15,6 +15,7 @@ class UserDetail extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text("User Details")),
+
         ),
         //TODO: Design User Detail Screen.
         body: Padding(
@@ -67,6 +68,7 @@ class UserDetail extends StatelessWidget {
                         child: Text("Approve",style: TextStyle(color: Colors.white),),
                         onPressed:(){
                         firebase_firestore.updateUserVerification(_userData);
+
                         Navigator.pop(context);
                         }),
                     MaterialButton(
